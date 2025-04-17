@@ -1,10 +1,14 @@
 #!/usr/bin/python3
 """
-  Function to calculate the perimeter of the island described in grid
+Function to calculate the perimeter of the island described in a grid.
 """
 
 
 def island_perimeter(grid):
+    """
+        @grid: A 2D list representing the grid where 1 is land and 0 is water.
+        return: int: The perimeter of the island.
+    """
     rows = len(grid)
     cols = len(grid[0]) if rows > 0 else 0
     perimeter = 0
