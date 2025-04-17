@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+
+
 def canUnlockAll(boxes):
   if not boxes or not isinstance(boxes, list):
     return False
