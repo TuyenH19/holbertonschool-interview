@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-  This module is to provide a function to determine if all the lockboxes can be opened
+  Function to determine if all the lockboxes can be opened
 """
 
 
@@ -8,10 +8,12 @@ def canUnlockAll(boxes):
     if not boxes or not isinstance(boxes, list):
         return False
 
-    # Using empty set to keep track of which boxes we've opened (by index) and give fast lookup without duplicate
+    # Using empty set to keep track of which boxes we've opened (by index)
+    # and give fast lookup without duplicate
     opened = set()
 
-    # Using the stack LIFO to explore boxes, and start with the box 0 which is unlocked
+    # Using the stack LIFO to explore boxes,
+    # and start with the box 0 which is unlocked
     stack = [0]
 
     while stack:
