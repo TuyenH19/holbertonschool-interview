@@ -1,7 +1,13 @@
 #!/usr/bin/python3
+"""
+  Minimum Operations Function.
+"""
 
 def minOperations(n):
-  """ Minimum Operations Function. """
+  """
+    @n: number of operation processed
+    return: int n
+  """
   
   if n <= 1:
     return 0
