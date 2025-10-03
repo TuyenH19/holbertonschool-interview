@@ -1,4 +1,16 @@
 #!/usr/bin/python3
+"""
+0-making_change: Compute the fewest coins needed to reach a total.
+
+Exposes:
+    makeChange(coins, total): returns the minimum number of coins needed
+    to make `total` using an infinite supply of the given denominations.
+
+Rules:
+- If total <= 0: return 0
+- If total cannot be formed: return -1
+- Coin values are positive integers
+"""
 
 
 def makeChange(coins, total):
