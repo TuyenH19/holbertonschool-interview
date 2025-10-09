@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Prime Game: determine the overall winner across rounds.
+"""
 
 
 def isWinner(x, nums):
