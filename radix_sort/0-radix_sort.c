@@ -8,7 +8,7 @@
  *
  * Return: The maximum value in the array
  */
-int get_max(const int *array, size_t size)
+static int get_max(const int *array, size_t size)
 {
 	int max = array[0];
 
@@ -26,7 +26,7 @@ int get_max(const int *array, size_t size)
  *
  * Return: void
  */
-void counting_sort_by_digit(int *array, size_t size, int exp)
+static void counting_sort_by_digit(int *array, size_t size, int exp)
 {
 	int count[10] = {0};
 	int *out = (int *)malloc(size * sizeof(int));
@@ -50,14 +50,12 @@ void counting_sort_by_digit(int *array, size_t size, int exp)
 		out[--count[d]] = array[i];
 	}
 
-	/* Copy back */
 	for (size_t i = 0; i < size; i++)
 		array[i] = out[i];
 
-	free(out);
-
-	/* Holberton-style: print after each digit pass */
 	print_array(array, size);
+
+	free(out);
 }
 
 /**
@@ -66,11 +64,11 @@ void counting_sort_by_digit(int *array, size_t size, int exp)
  * @size: Number of elements in @array.
  * Return: void
  */
-	void radix_sort(int *array, size_t size)
+void radix_sort(int *array, size_t size)
 {
-	if (!array || size < 2)
-		return;
-
+		if (!array || size < 2)
+			return;
+	
 		int max = get_max(array, size);
 
 		/* Sort by each digit (base 10) */
