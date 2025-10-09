@@ -68,7 +68,7 @@ void radix_sort(int *array, size_t size)
 {
 		if (!array || size < 2)
 			return;
-	
+
 		int max = get_max(array, size);
 
 		/* Sort by each digit (base 10) */
