@@ -13,16 +13,16 @@
  */
 int main(int ac, char **av)
 {
-    int level;
+	int level;
 
-    if (ac < 2)
-    {
-        fprintf(stderr, "Usage: %s level\n", av[0]);
-        return (EXIT_FAILURE);
-    }
+	if (ac < 2)
+	{
+		fprintf(stderr, "Usage: %s level\n", av[0]);
+		return (EXIT_FAILURE);
+	}
 
-    level = atoi(av[1]);
-    menger(level);
+	level = atoi(av[1]);
+	menger(level);
 
-    return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }

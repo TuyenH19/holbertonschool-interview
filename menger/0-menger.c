@@ -3,7 +3,7 @@
 #include <math.h>
 
 /**
- * remove_center - Recursively removes the center of squares to create Menger Carpet
+ * remove_center - Recursively removes the center of squares
  * @grid: The 2D grid representing the carpet
  * @x: X coordinate of the top-left corner
  * @y: Y coordinate of the top-left corner
@@ -39,42 +39,40 @@ static void remove_center(int **grid, int x, int y, int size, int level)
 }
 
 /**
- * menger - Draws a 2D Menger Sponge (Menger Carpet)
- * @level: The recursion level of the Menger Sponge
+ * allocate_grid - Allocates and initializes memory for the grid
+ * @size: Size of the grid
+ *
+ * Return: Pointer to allocated grid or NULL on failure
  */
-void menger(int level)
+static int **allocate_grid(int size)
 {
-	int size;
-	int i, j;
 	int **grid;
+	int i, j;
 
-	if (level < 0)
-		return;
-
-	/* Calculate the size of the grid (3^level x 3^level) */
-	size = (int)pow(3, level);
-
-	/* Allocate memory for the grid */
 	grid = malloc(size * sizeof(int *));
 	if (grid == NULL)
-		return;
+		return (NULL);
 
 	for (i = 0; i < size; i++)
 	{
 		grid[i] = malloc(size * sizeof(int));
 		if (grid[i] == NULL)
-			return;
-	}
-
-	/* Initialize all cells to 1 (filled) */
-	for (i = 0; i < size; i++)
+			return (NULL);
 		for (j = 0; j < size; j++)
 			grid[i][j] = 1;
+	}
+	return (grid);
+}
 
-	/* Generate the Menger Sponge */
-	remove_center(grid, 0, 0, size, level);
+/**
+ * print_and_free - Prints the grid and frees memory
+ * @grid: The grid to print and free
+ * @size: Size of the grid
+ */
+static void print_and_free(int **grid, int size)
+{
+	int i, j;
 
-	/* Print the grid */
 	for (i = 0; i < size; i++)
 	{
 		for (j = 0; j < size; j++)
@@ -87,8 +85,28 @@ void menger(int level)
 		printf("\n");
 	}
 
-	/* Free allocated memory */
 	for (i = 0; i < size; i++)
 		free(grid[i]);
 	free(grid);
+}
+
+/**
+ * menger - Draws a 2D Menger Sponge (Menger Carpet)
+ * @level: The recursion level of the Menger Sponge
+ */
+void menger(int level)
+{
+	int size;
+	int **grid;
+
+	if (level < 0)
+		return;
+
+	size = (int)pow(3, level);
+	grid = allocate_grid(size);
+	if (grid == NULL)
+		return;
+
+	remove_center(grid, 0, 0, size, level);
+	print_and_free(grid, size);
 }
