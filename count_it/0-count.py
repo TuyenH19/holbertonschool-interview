@@ -2,6 +2,7 @@
 """Recursive Reddit keyword counter."""
 
 import json
+import sys
 import urllib.error
 import urllib.request
 
@@ -117,7 +118,6 @@ def count_words(subreddit, word_list, after=None, counts=None):
 
 
 if __name__ == "__main__":
-    import sys
 
     if len(sys.argv) < 3:
         print("Usage: {} <subreddit> <list of keywords>".format(sys.argv[0]))
