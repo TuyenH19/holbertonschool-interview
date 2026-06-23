@@ -80,7 +80,7 @@ void merge_sort_recursive(int *array, int *temp, size_t left, size_t right)
     if (left >= right)
         return;
 
-    size_t mid = left + (right - left) / 2;  /* Ensures left <= right */
+    size_t mid = left + (right - left - 1) / 2;
 
     /* Sort left half first */
     merge_sort_recursive(array, temp, left, mid);
