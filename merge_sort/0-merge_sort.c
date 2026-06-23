@@ -12,60 +12,29 @@
  */
 void merge(int *array, int *temp, size_t left, size_t mid, size_t right)
 {
-    size_t i = left, j = mid + 1, k = left;
+	size_t i = left, j = mid + 1, k = left;
 
-    printf("Merging...\n");
-    
-    /* Print left subarray */
-    printf("[left]: ");
-    for (size_t idx = left; idx <= mid; idx++)
-    {
-        if (idx > left)
-            printf(", ");
-        printf("%d", array[idx]);
-    }
-    printf("\n");
-    
-    /* Print right subarray */
-    printf("[right]: ");
-    for (size_t idx = mid + 1; idx <= right; idx++)
-    {
-        if (idx > mid + 1)
-            printf(", ");
-        printf("%d", array[idx]);
-    }
-    printf("\n");
+	printf("Merging...\n[left]: ");
+	for (size_t x = left; x <= mid; x++)
+		printf("%s%d", x > left ? ", " : "", array[x]);
+	printf("\n[right]: ");
+	for (size_t x = mid + 1; x <= right; x++)
+		printf("%s%d", x > mid + 1 ? ", " : "", array[x]);
+	printf("\n");
 
-    /* Merge the two halves into temp */
-    while (i <= mid && j <= right)
-    {
-        if (array[i] <= array[j])
-            temp[k++] = array[i++];
-        else
-            temp[k++] = array[j++];
-    }
+	while (i <= mid && j <= right)
+		temp[k++] = (array[i] <= array[j]) ? array[i++] : array[j++];
+	while (i <= mid)
+		temp[k++] = array[i++];
+	while (j <= right)
+		temp[k++] = array[j++];
+	for (k = left; k <= right; k++)
+		array[k] = temp[k];
 
-    /* Copy remaining elements from left half */
-    while (i <= mid)
-        temp[k++] = array[i++];
-
-    /* Copy remaining elements from right half */
-    while (j <= right)
-        temp[k++] = array[j++];
-
-    /* Copy merged elements back to original array */
-    for (k = left; k <= right; k++)
-        array[k] = temp[k];
-
-    /* Print merged result */
-    printf("[Done]: ");
-    for (k = left; k <= right; k++)
-    {
-        if (k > left)
-            printf(", ");
-        printf("%d", array[k]);
-    }
-    printf("\n");
+	printf("[Done]: ");
+	for (k = left; k <= right; k++)
+		printf("%s%d", k > left ? ", " : "", array[k]);
+	printf("\n");
 }
 
 /**
@@ -77,17 +46,17 @@ void merge(int *array, int *temp, size_t left, size_t mid, size_t right)
  */
 void merge_sort_recursive(int *array, int *temp, size_t left, size_t right)
 {
-    if (left >= right)
-        return;
+	if (left >= right)
+		return;
 
-    size_t mid = left + (right - left - 1) / 2;
+	size_t mid = left + (right - left - 1) / 2;
 
-    /* Sort left half first */
-    merge_sort_recursive(array, temp, left, mid);
-    /* Then sort right half */
-    merge_sort_recursive(array, temp, mid + 1, right);
-    /* Merge the sorted halves */
-    merge(array, temp, left, mid, right);
+	/* Sort left half first */
+	merge_sort_recursive(array, temp, left, mid);
+	/* Then sort right half */
+	merge_sort_recursive(array, temp, mid + 1, right);
+	/* Merge the sorted halves */
+	merge(array, temp, left, mid, right);
 }
 
 /**
@@ -99,13 +68,14 @@ void merge_sort_recursive(int *array, int *temp, size_t left, size_t right)
  */
 void merge_sort(int *array, size_t size)
 {
-    if (!array || size < 2)
-        return;
+	if (!array || size < 2)
+		return;
 
-    int *temp = malloc(sizeof(int) * size);
-    if (!temp)
-        return;
+	int *temp = malloc(sizeof(int) * size);
 
-    merge_sort_recursive(array, temp, 0, size - 1);
-    free(temp);
+	if (!temp)
+		return;
+
+	merge_sort_recursive(array, temp, 0, size - 1);
+	free(temp);
 }
