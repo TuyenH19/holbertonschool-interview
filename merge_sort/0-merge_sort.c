@@ -1,5 +1,6 @@
 #include "sort.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
  * merge - Merges two sorted subarrays into a single sorted subarray
@@ -12,6 +13,28 @@
 void merge(int *array, int *temp, size_t left, size_t mid, size_t right)
 {
     size_t i = left, j = mid + 1, k = left;
+
+    printf("Merging...\n");
+    
+    /* Print left subarray */
+    printf("[left]: ");
+    for (size_t idx = left; idx <= mid; idx++)
+    {
+        if (idx > left)
+            printf(", ");
+        printf("%d", array[idx]);
+    }
+    printf("\n");
+    
+    /* Print right subarray */
+    printf("[right]: ");
+    for (size_t idx = mid + 1; idx <= right; idx++)
+    {
+        if (idx > mid + 1)
+            printf(", ");
+        printf("%d", array[idx]);
+    }
+    printf("\n");
 
     /* Merge the two halves into temp */
     while (i <= mid && j <= right)
@@ -33,6 +56,16 @@ void merge(int *array, int *temp, size_t left, size_t mid, size_t right)
     /* Copy merged elements back to original array */
     for (k = left; k <= right; k++)
         array[k] = temp[k];
+
+    /* Print merged result */
+    printf("[Done]: ");
+    for (k = left; k <= right; k++)
+    {
+        if (k > left)
+            printf(", ");
+        printf("%d", array[k]);
+    }
+    printf("\n");
 }
 
 /**
